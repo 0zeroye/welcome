@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎！</title>
+    <style>
+        /* 1. 基础页面设置 */
+        html, body {
+            height: 100%; /* 让页面占满整个屏幕 */
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden; /* 隐藏滚动条，防止装饰溢出 */
+            color: #fff;
+        }
+
+        /* 2. 【装饰一】：动态渐变背景 */
+        body {
+            /* 设定一个非常华丽的四色渐变 */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            /* 设定背景大小，400%是为了让渐变有移动空间 */
+            background-size: 400% 400%;
+            /* 关键：应用动画效果 */
+            animation: gradientFlow 15s ease infinite;
+            
+            /* 使用 Flexbox 将所有内容垂直和水平居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* 渐变背景的动画 */
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 3. 【装饰二】：主要的欢迎大字 */
+        h1 {
+            /* 核心内容：金色渐变文字 */
+            font-size: 6rem; /* 字体非常大 */
+            font-weight: 900; /* 粗体 */
+            background: linear-gradient(45deg, #ffd700, #ffec80, #ffd700); /* 金色渐变 */
+            color: transparent; /* 将字体本身设为透明 */
+            -webkit-background-clip: text; /* 关键：让背景（渐变色）只在文字内部显示 */
+            background-clip: text;
+            
+            /* 使用一个更具美感的字体，如果电脑上没有，会自动回退到 serif（衬线体） */
+            font-family: 'STKaiti', 'KaiTi', 'SimSun', 'serif';
+
+            /* 【装饰三】：文字发光阴影 */
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), /* 金色光晕 */
+                         0 0 25px rgba(255, 255, 255, 0.3), /* 白色柔光 */
+                         2px 2px 4px rgba(0, 0, 0, 0.2); /* 轻微的黑色阴影增加立体感 */
+
+            /* 【装饰四】：入场动画 */
+            animation: textFadeIn 2s ease-out;
+            
+            /* 解决在小屏幕上的换行问题 */
+            word-break: keep-all;
+        }
+
+        /* 文字入场动画 */
+        @keyframes textFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        /* 适配小屏幕手机 */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 3.5rem; /* 手机上字体小一点 */
+            }
+        }
+
+        /* 4. 【装饰五】：漂浮发光粒子（很多装饰） */
+        .particle-container {
+            position: fixed; /* 固定在屏幕上 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 让粒子不影响鼠标点击 */
+            z-index: -1; /* 确保在文字后方 */
+        }
+
+        .particle {
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 50%;
+            opacity: 0;
+            
+            /* 关键：应用粒子动画 */
+            animation: sparkle 10s linear infinite;
+            
+            /* 制造发光效果 */
+            box-shadow: 0 0 8px #fff, 0 0 16px #fff;
+        }
+        
+        /* 粒子的动画：从上到下漂浮，并旋转 */
+        @keyframes sparkle {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 使用 CSS nth-child 来创建随机感，让装饰看起来“很多”且“不同” */
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; width: 5px; height: 5px; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1s; width: 3px; height: 3px; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 3s; width: 6px; height: 6px; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 4.5s; width: 4px; height: 4px; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 2s; width: 5px; height: 5px; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 6s; width: 3px; height: 3px; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 1.5s; width: 6px; height: 6px; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 8s; width: 4px; height: 4px; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 5s; width: 5px; height: 5px; }
+        .particle:nth-child(10) { left: 15%; animation-delay: 7s; width: 3px; height: 3px; }
+        .particle:nth-child(11) { left: 25%; animation-delay: 9s; width: 6px; height: 6px; }
+        .particle:nth-child(12) { left: 75%; animation-delay: 10s; width: 4px; height: 4px; }
+        .particle:nth-child(13) { left: 5%; animation-delay: 4s; width: 5px; height: 5px; }
+        .particle:nth-child(14) { left: 95%; animation-delay: 2.5s; width: 3px; height: 3px; }
+        .particle:nth-child(15) { left: 55%; animation-delay: 0.5s; width: 6px; height: 6px; }
+        .particle:nth-child(16) { left: 35%; animation-delay: 3.5s; width: 4px; height: 4px; }
+        .particle:nth-child(17) { left: 45%; animation-delay: 5.5s; width: 5px; height: 5px; }
+        .particle:nth-child(18) { left: 65%; animation-delay: 6.5s; width: 3px; height: 3px; }
+        .particle:nth-child(19) { left: 85%; animation-delay: 7.5s; width: 6px; height: 6px; }
+        .particle:nth-child(20) { left: 50%; animation-delay: 8.5s; width: 4px; height: 4px; }
+        
+    </style>
+</head>
+<body>
+
+    <div class="particle-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <h1>
+        欢迎朱锦元莅临
+    </h1>
+
+</body>
+</html>
